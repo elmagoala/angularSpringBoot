@@ -1,0 +1,36 @@
+<mat-card>
+  <mat-card-title>
+    Employee
+  </mat-card-title>
+  <mat-card-content>
+    <form [formGroup]="employeeForm" 
+          fxLayout="column" 
+          fxLayoutAlign="center center" 
+          >
+      <mat-form-field>
+        <input matInput placeholder="Ultimatix" formControlName="ultimatix">
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput placeholder="Identification" formControlName="identification">
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput placeholder="Name" formControlName="name" pattern="[a-zA-Z ]*">
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput placeholder="Last name" formControlName="lastName" pattern="[a-zA-Z ]*">
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput [matDatepicker]="picker" placeholder="Birth Date" formControlName="birthDate">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+    </form>
+  </mat-card-content>
+  <mat-card-actions align="center">
+    <button mat-raised-button color="primary" (click)="save()">Save</button>
+  </mat-card-actions>
+</mat-card>
