@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {  formatDate } from '@angular/common';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { EmployeeService } from '../services/employee/employee.service';
 import { Employee } from '../models/employee/employee';
@@ -48,7 +49,7 @@ export class EmployeeComponent implements OnInit {
     //console.log('SUCCESS!! :-)\n\n' + JSON.stringify(this.employeeForm.value))
     this.setObjectEmployee(this.employeeForm);
     //console.log(JSON.stringify(this.employee));
-    this.employeeService.create(this.employee);
+    //this.employeeService.create(this.employee);
     //console.log(this.employeeService.create(this.employee));
   }
 
@@ -57,7 +58,8 @@ export class EmployeeComponent implements OnInit {
     this.employee.identification = employeeForm.value.identification;
     this.employee.name = employeeForm.value.name;
     this.employee.lastName = employeeForm.value.lastName;
-    this.employee.birthDate = employeeForm.value.birthDate;
+    this.employee.birthDate = formatDate(employeeForm.value.birthDate, 'dd/MM/yyyy','en-US')
+
   }
 
 }
