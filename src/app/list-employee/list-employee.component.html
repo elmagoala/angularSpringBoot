@@ -1,0 +1,41 @@
+<div class="example-container mat-elevation-z8">
+    <table mat-table [dataSource]="employees">
+  
+      <!--Position Column -->
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef> No. </th>
+        <td mat-cell *matCellDef="let employee"> {{employee.id}} </td>
+      </ng-container>
+  
+      <!-- Name Column -->
+      <ng-container matColumnDef="ultimatix">
+        <th mat-header-cell *matHeaderCellDef> Ultimatix </th>
+        <td mat-cell *matCellDef="let employee"> {{employee.ultimatix}} </td>
+      </ng-container>
+  
+      <!-- Weight Column -->
+      <ng-container matColumnDef="identification">
+        <th mat-header-cell *matHeaderCellDef> Identification </th>
+        <td mat-cell *matCellDef="let employee"> {{employee.identification}} </td>
+      </ng-container>
+  
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef> Name </th>
+        <td mat-cell *matCellDef="let employee"> {{employee.name + ' ' +employee.lastName}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="birthDate">
+          <th mat-header-cell *matHeaderCellDef> Birth Date </th>
+          <td mat-cell *matCellDef="let employee"> {{employee.birthDate}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="action">
+          <th mat-header-cell *matHeaderCellDef> Action </th>
+          <td mat-cell *matCellDef="let employee" > <button mat-raised-button color="warn" (click)="delete(employee.id)">Delete</button>  </td>
+      </ng-container>
+  
+      <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </div>

@@ -16,6 +16,7 @@ import { LoginComponent } from './login/login.component';
 import { EmployeeComponent } from './employee/employee.component';
 
 import { EmployeeService } from './services/employee/employee.service';
+import { ListEmployeeComponent } from './list-employee/list-employee.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { EmployeeService } from './services/employee/employee.service';
     WelcomeComponent,
     SignupComponent,
     LoginComponent,
-    EmployeeComponent
+    EmployeeComponent,
+    ListEmployeeComponent
   ],
   imports: [
     BrowserModule,

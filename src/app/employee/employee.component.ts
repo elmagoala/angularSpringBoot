@@ -14,6 +14,7 @@ export class EmployeeComponent implements OnInit {
   public employeeForm: FormGroup;
   public submitted = false;
   private employee: Employee = new Employee();
+  public listEmployees: Employee[];
 
   constructor(private fb: FormBuilder,
               private employeeService: EmployeeService) {
@@ -25,16 +26,12 @@ export class EmployeeComponent implements OnInit {
 
   private createForm() {
     this.employeeForm = this.fb.group({
-      ultimatix: ['', [Validators.required]],
-      identification: ['', [Validators.required]],
+      ultimatix: ['', [Validators.required, Validators.pattern('(^[0][0-9]+)|([0-9]\d*)')]],
+      identification: ['', [Validators.required, Validators.pattern('(^[0][0-9]+)|([0-9]\d*)')]],
       name: ['', [Validators.required, Validators.pattern('[a-zA-Z ]*')]],
       lastName: ['', [Validators.required, Validators.pattern('[a-zA-Z ]*')]],
       birthDate: ['', [Validators.required]]
     });
-  }
-
-  getErrorMessage() {
-    console.log(this.employeeForm.controls.name);
   }
 
   get f() { return this.employeeForm.controls; }
@@ -42,15 +39,32 @@ export class EmployeeComponent implements OnInit {
   save() {
     this.submitted = true;
     
-    // stop here if form is invalid
+    
     if (this.employeeForm.invalid) {
         return;
     }
-    //console.log('SUCCESS!! :-)\n\n' + JSON.stringify(this.employeeForm.value))
     this.setObjectEmployee(this.employeeForm);
+<<<<<<< HEAD
+    this.employeeService.create(this.employee).subscribe(
+      data => {
+          console.log("POST Request is successful ", data);
+          this.getAll();
+          this.employeeForm.reset();
+      },
+      error => {
+          console.log("Error", error);
+      })
+  }
+
+  private getAll() {
+    this.employeeService.getAll().subscribe(data => {
+      this.listEmployees = data;
+    });
+=======
     //console.log(JSON.stringify(this.employee));
     //this.employeeService.create(this.employee);
     //console.log(this.employeeService.create(this.employee));
+>>>>>>> 02638e93a18d82395af019e303cd62bc28d47012
   }
 
   private setObjectEmployee(employeeForm: FormGroup) {
